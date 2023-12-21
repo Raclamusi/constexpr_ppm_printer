@@ -32,7 +32,7 @@
 namespace constexpr_ppm_printer {
     namespace detail {
         template <std::uint8_t Value, std::size_t, int, std::uintmax_t>
-        void print_value() {
+        void print_value() noexcept {
             if constexpr (Value == 0) CONSTEXPR_PPM_PRINTER_PRINT("0");
             else if constexpr (Value == 1) CONSTEXPR_PPM_PRINTER_PRINT("1");
             else if constexpr (Value == 2) CONSTEXPR_PPM_PRINTER_PRINT("2");
@@ -298,7 +298,7 @@ namespace constexpr_ppm_printer {
                 { pixel.b } -> std::convertible_to<std::uint8_t>;
             }
         [[nodiscard]]
-        constexpr std::array<std::uint8_t, 3> get_rgb(const Pixel& pixel) {
+        constexpr std::array<std::uint8_t, 3> get_rgb(const Pixel& pixel) noexcept {
             return std::array<std::uint8_t, 3>{ pixel.r, pixel.g, pixel.b };
         }
         
@@ -311,7 +311,7 @@ namespace constexpr_ppm_printer {
                 { get<2>(pixel) } -> std::convertible_to<std::uint8_t>;
             }
         [[nodiscard]]
-        constexpr std::array<std::uint8_t, 3> get_rgb(const Pixel& pixel) {
+        constexpr std::array<std::uint8_t, 3> get_rgb(const Pixel& pixel) noexcept {
             return std::array<std::uint8_t, 3>{ get<0>(pixel), get<1>(pixel), get<2>(pixel) };
         }
     }
